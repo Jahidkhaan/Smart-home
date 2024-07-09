@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHome - Your Home, Smarter</title>
+    <style>
+        /* Set body background color */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fafafa; /* Page background color */
+        }
+
+        header {
+            background: #004d99; /* Navbar background color */
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        nav {
+            position: relative;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .nav-toggle-label {
+            display: none;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .nav-toggle-label span,
+        .nav-toggle-label span::before,
+        .nav-toggle-label span::after {
+            display: block;
+            background: #fff;
+            height: 2px;
+            width: 25px;
+            border-radius: 2px;
+            position: absolute;
+        }
+
+        .nav-toggle-label span::before {
+            content: '';
+            top: -8px;
+        }
+
+        .nav-toggle-label span::after {
+            content: '';
+            top: 8px;
+        }
+
+        .nav-menu {
+            display: flex; /* Display navbar items side by side */
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .nav-toggle-label {
+                display: block;
+            }
+            
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: #004d99;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                width: 200px;
+            }
+
+            .nav-menu a {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .nav-toggle:checked + .nav-toggle-label + .nav-menu {
+                display: flex;
+            }
+        }
+
+        #hero {
+            background: #e6f2ff;
+            padding: 50px 0;
+            text-align: center;
+            animation: fadeIn 2s;
+        }
+
+        #hero h2 {
+            margin: 0 0 10px;
+            font-size: 2.5em;
+            color: #004d99;
+        }
+
+        #hero p {
+            margin: 0 0 20px;
+            font-size: 1.2em;
+        }
+
+        .cta-button {
+            background: #ff6600;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #e65c00;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        section {
+            padding: 50px 0;
+            animation: fadeIn 2s;
+        }
+
+        .feature {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .feature img {
+            width: 80px; /* Make images smaller */
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .pricing-plan {
+            background: #d9edf7;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeInUp 1.5s;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background: #004d99;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form button:hover {
+            background: #003366;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Custom Animation */
+        @keyframes moveUp {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-50vh); /* Adjust as needed */
+            }
+        }
+
+        #hero-title {
+            font-size: 2.5em;
+            margin: 0;
+            padding-top: 50vh; /* Adjust to center vertically */
+            animation: moveUp 2s forwards; /* Animation on page load */
+        }
+
+        @media (max-width: 768px) {
+            #hero-title {
+                padding-top: 40vh; /* Adjust for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SmartHome</h1>
+            <nav>
+                <input type="checkbox" id="nav-toggle" class="nav-toggle">
+                <label for="nav-toggle" class="nav-toggle-label">
+                    <span></span>
+                </label>
+                <div class="nav-menu">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Your Home, Smarter</h2>
+            <p>Control your home appliances with ease using our state-of-the-art home automation system.</p>
+            <a href="#features" class="cta-button">Learn More</a>
+        </div>
+    </section>
+
+    <section id="features" class="container">
+        <h2>Features</h2>
+        <div class="feature">
+            <img src="rc.jpg" alt="Remote Control">
+            <h3>Remote Control</h3>
+            <p>Control your home appliances from anywhere using our mobile app.</p>
+        </div>
+        <div class="feature">
+            <img src="en.jpeg" alt="Energy Saving">
+            <h3>Energy Saving</h3>
+            <p>Save energy by scheduling appliances to turn on and off automatically.</p>
+        </div>
+        <div class="feature">
+            <img src="s.jpg" alt="Security">
+            <h3>Security</h3>
+            <p>Enhance your home security with smart locks and cameras.</p>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="container">
+        <h2>How It Works</h2>
+        <p>Our system integrates seamlessly with your existing appliances. Simply install our SmartHome hub, connect your devices, and start controlling everything from your smartphone.</p>
+    </section>
+
+    <section id="pricing" class="container">
+        <h2>Pricing</h2>
+        <p>Choose the plan that suits you best:</p>
+        <div class="pricing-plan">
+            <h3>Basic</h3>
+            <p>₹49/month</p>
+            <p>Includes remote control and energy saving features.</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Premium</h3>
+            <p>₹99/month</p>
+            <p>Includes all Basic features plus enhanced security options.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="container">
+        <h2>Contact Us</h2>
+        <p>Have questions? Get in touch with us:</p>
+        
+
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SmartHome. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
