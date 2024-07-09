@@ -1,6 +1,16 @@
 OctaNet Services Web Development Internship Tasks
 This repository contains my solutions to the tasks assigned during the web development internship at OctaNet Services Pvt Ltd.
 
+Task 1 : Smart Home landing page
+
+The SmartHome website is a responsive and animated landing page designed to showcase the features, pricing, and contact information for the SmartHome home automation system. The website includes animations to enhance user experience, such as a title moving from the center of the page to the navbar upon page load.
+
+Technologies Used :
+
+HTML
+
+CSS
+
 
 ![home tab](https://github.com/Jahidkhaan/Smart-home/assets/174988082/68a0d1f1-46b9-4836-857b-3176a91fd090)
 
