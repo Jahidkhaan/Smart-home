@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0 0 20px 0;
+        }
+
+        .header button {
+            background-color: #fff;
+            color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .header button:hover {
+            background-color: #e6e6e6;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px auto;
+            flex-grow: 1;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .new-task {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #task-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #add-task-btn {
+            padding: 10px;
+            margin-left: 10px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #add-task-btn:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        li span {
+            flex-grow: 1;
+            margin-right: 10px;
+            word-break: break-word;
+        }
+
+        li.completed span {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        li .edit-btn, li .delete-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        li .edit-btn {
+            color: #ffc107;
+        }
+
+        li .edit-btn:hover {
+            color: #e0a800;
+        }
+
+        li .delete-btn {
+            color: #dc3545;
+        }
+
+        li .delete-btn:hover {
+            color: #c82333;
+        }
+
+        .info-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        .info-section button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            margin-top: auto;
+        }
+
+        .credits {
+            margin-top: 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>To-Do List</h1>
+        <button onclick="showSection('how-it-works')">How it Works</button>
+        <button onclick="showSection('features')">Features</button>
+    </div>
+
+    <div class="container" id="todo-list-section">
+        <h1>To-Do List</h1>
+        <div class="new-task">
+            <input type="text" id="task-input" placeholder="Add a new task...">
+            <button id="add-task-btn">Add Task</button>
+        </div>
+        <ul id="task-list"></ul>
+    </div>
+
+    <div class="info-section" id="how-it-works">
+        <h1>How it Works</h1>
+        <p>Use this application to manage your tasks efficiently. Add new tasks, mark them as completed, edit them, and delete them as needed.</p>
+        <button onclick="showSection('todo-list-section')">Back </button>
+    </div>
+
+    <div class="info-section" id="features">
+        <h1>Features</h1>
+        <ul>
+            <li>Add new tasks</li>
+            <li>Mark tasks as completed</li>
+            <li>Edit existing tasks</li>
+            <li>Delete tasks</li>
+        </ul>
+        <button onclick="showSection('todo-list-section')">Back</button>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 To-Do List. All rights reserved.</p>
+        <p class="credits">Credits: Created byJahid Khan </p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskInput = document.getElementById('task-input');
+            const addTaskBtn = document.getElementById('add-task-btn');
+            const taskList = document.getElementById('task-list');
+
+            addTaskBtn.addEventListener('click', addTask);
+
+            function addTask() {
+                const taskText = taskInput.value.trim();
+                if (taskText === '') return;
+
+                const taskItem = document.createElement('li');
+
+                const taskContent = document.createElement('span');
+                taskContent.textContent = taskText;
+                taskContent.addEventListener('click', toggleTaskCompleted);
+                taskItem.appendChild(taskContent);
+
+                const editBtn = document.createElement('button');
+                editBtn.innerHTML = 'Edit';
+                editBtn.classList.add('edit-btn');
+                editBtn.addEventListener('click', () => editTask(taskContent));
+                taskItem.appendChild(editBtn);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = 'Delete';
+                deleteBtn.classList.add('delete-btn');
+                deleteBtn.addEventListener('click', () => taskItem.remove());
+                taskItem.appendChild(deleteBtn);
+
+                taskList.appendChild(taskItem);
+                taskInput.value = '';
+                taskInput.focus();
+            }
+
+            function toggleTaskCompleted(event) {
+                event.target.classList.toggle('completed');
+            }
+
+            function editTask(taskContent) {
+                const newTaskText = prompt('Edit Task:', taskContent.textContent);
+                if (newTaskText !== null) {
+                    taskContent.textContent = newTaskText;
+                }
+            }
+        });
+
+        function showSection(sectionId) {
+            document.getElementById('todo-list-section').style.display = 'none';
+            document.getElementById('how-it-works').style.display = 'none';
+            document.getElementById('features').style.display = 'none';
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
