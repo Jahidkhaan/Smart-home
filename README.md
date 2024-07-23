@@ -17,3 +17,24 @@ CSS
 ![featuers](https://github.com/Jahidkhaan/Smart-home/assets/174988082/f31b8113-636e-472c-9dec-8a5260a6bc45)
 ![pricing](https://github.com/Jahidkhaan/Smart-home/assets/174988082/2a47e375-99d4-4df2-97c1-51986255a2d7)
 ![contact us](https://github.com/Jahidkhaan/Smart-home/assets/174988082/a695ba40-2a9f-4264-a00d-14ceed8861ed)
+
+
+Task 2 : To do list page
+
+
+A simple To-Do List web application built with HTML, CSS, and JavaScript. Manage tasks efficiently with features to add, edit, complete, and delete tasks.
+
+Features
+Add new tasks
+Mark tasks as completed
+Edit existing tasks
+Delete tasks
+Navigation between "How it Works" and "Features" sections
+
+Technologies Used
+HTML
+CSS
+JavaScript
+![Screenshot 2024-07-23 221138](https://github.com/user-attachments/assets/9198a699-b52f-41ac-9538-cb16bcc011fd)
+![Screenshot 2024-07-23 221248](https://github.com/user-attachments/assets/d3aa252e-aec1-497c-928c-6ba3c9e1c22a)
+
